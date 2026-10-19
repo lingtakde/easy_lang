@@ -44,3 +44,9 @@ printf '%s\n' 'Good morning.' 'See you tomorrow.' | easy-lang -i
 ```
 
 Without `--interactive`, piped stdin is translated as one input, including any line breaks. `--file PATH` and `--file -` also translate the entire input in one request. `--interactive` cannot be combined with positional text or `--file`. It is a CLI-only option; no configuration fields or environment variables are added.
+
+## License
+
+easy-lang is licensed under the GNU General Public License, version 3 or (at your option) any later version (`GPL-3.0-or-later`). See [LICENSE](LICENSE) for the full license text.
+
+This program is distributed without any warranty; see the license for details.

@@ -4,6 +4,8 @@ version:            0.1.0.0
 synopsis:           A small, independent-request translation CLI for OpenRouter
 description:        Translate UTF-8 text from arguments, files, or standard input.
 category:           Text
+license:            GPL-3.0-or-later
+license-file:       LICENSE
 build-type:         Simple
 extra-source-files: README.md
                   , config.example.toml
