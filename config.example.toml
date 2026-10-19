@@ -1,5 +1,6 @@
 # Copy to ~/.easy-lang/config.toml and edit as needed.
 # All eight fields are required; the executable has no built-in defaults.
+# Interactive mode uses --interactive (-i); it has no config field or environment variable.
 source_language = "auto"
 target_language = "zh"
 model = "deepseek/deepseek-v4.1-flash-1017"

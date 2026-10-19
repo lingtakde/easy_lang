@@ -7,7 +7,7 @@
 - `config.example.toml` documents configuration; `easy-lang.cabal` declares components and dependencies.
 - Local tests, fixtures, translation-check scripts, and reports are excluded from version control and package sources.
 
-Preserve one independent, non-streaming OpenRouter request per invocation. Language detection and bidirectional routing belong in the LLM prompt; local code validates pair conflicts. Keep translations on stdout and errors/progress on stderr, with animation limited to terminals.
+Preserve one independent, non-streaming OpenRouter request per input, with no conversation history. Interactive mode accepts one input per nonblank line; other input modes send one request per invocation. Language detection and bidirectional routing belong in the LLM prompt; local code validates pair conflicts. Keep translations on stdout and errors/progress on stderr, with animation limited to terminals.
 
 ## Development
 

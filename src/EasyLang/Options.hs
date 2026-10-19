@@ -15,7 +15,7 @@ import EasyLang.Reasoning (parseReasoningEffort)
 import Options.Applicative
 import Text.Read (readMaybe)
 
-data Input = Stdin | File FilePath | Inline [Text]
+data Input = Stdin | File FilePath | Inline [Text] | Interactive
   deriving (Eq, Show)
 
 data Options = Options
@@ -34,8 +34,8 @@ optionsInfo :: Config -> [(String, String)] -> ParserInfo (Either Text Options)
 optionsInfo config environment = info
   (options <**> helper <**> infoOption "easy-lang 0.1.0.0" (long "version" <> help "Show version"))
   (fullDesc
-    <> progDesc "Translate text with one independent, non-streaming OpenRouter request"
-    <> footer "Reads UTF-8 stdin if TEXT and --file are omitted. Required config: ~/.easy-lang/config.toml. Precedence: CLI > environment > config. Explicit --to or EASY_LANG_TO bypasses language pairs. Set OPENROUTER_API_KEY before use.")
+    <> progDesc "Translate each input with an independent, non-streaming OpenRouter request"
+    <> footer "With no input option, terminal stdin starts an interactive session; piped stdin is translated as one input. Interactive mode reads one input per line, skips blank lines, and exits on EOF (Ctrl+D) or Ctrl+C. Required config: ~/.easy-lang/config.toml. Precedence: CLI > environment > config. Explicit --to or EASY_LANG_TO bypasses language pairs. Set OPENROUTER_API_KEY before use.")
   where
     options = resolve
       <$> optional (option nonempty (long "to" <> short 't' <> metavar "LANG"
@@ -48,7 +48,8 @@ optionsInfo config environment = info
             <> configHelp "Request timeout, 1-3600 seconds (env: EASY_LANG_TIMEOUT)" (T.pack (show (configTimeoutSeconds config)))))
       <*> optional (option (boundedPositive 262144) (long "max-tokens" <> metavar "N"
             <> configHelp "Output limit, 1-262144 tokens (env: EASY_LANG_MAX_TOKENS)" (T.pack (show (configMaxTokens config)))))
-      <*> (File <$> strOption (long "file" <> short 'f' <> metavar "PATH" <> help "Read a UTF-8 file; use - for stdin")
+      <*> (flag' Interactive (long "interactive" <> short 'i' <> help "Translate each UTF-8 input line independently; no conversation history")
+            <|> File <$> strOption (long "file" <> short 'f' <> metavar "PATH" <> help "Read a UTF-8 file; use - for stdin as one input")
             <|> Inline <$> some (T.pack <$> strArgument (metavar "TEXT"))
             <|> pure Stdin)
       <*> optional

@@ -42,3 +42,5 @@ executable easy-lang
   ghc-options:      -threaded -rtsopts
   build-depends:    easy-lang
                   , optparse-applicative
+                  , haskeline >=0.8.2 && <0.9
+                  , transformers >=0.5 && <0.7
