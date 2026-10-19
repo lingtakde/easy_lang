@@ -1,0 +1,10 @@
+# Copy to ~/.easy-lang/config.toml and edit as needed.
+# All eight fields are required; the executable has no built-in defaults.
+source_language = "auto"
+target_language = "zh"
+model = "deepseek/deepseek-v4.1-flash-1017"
+timeout = 30
+max_tokens = 4096
+spinner = true
+language_pairs = [["zh", "en"], ["ja", "ko"]]
+reasoning_effort = "medium"

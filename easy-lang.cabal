@@ -1,0 +1,44 @@
+cabal-version:      3.0
+name:               easy-lang
+version:            0.1.0.0
+synopsis:           A small, independent-request translation CLI for OpenRouter
+description:        Translate UTF-8 text from arguments, files, or standard input.
+category:           Text
+build-type:         Simple
+extra-source-files: README.md
+                  , config.example.toml
+
+common defaults
+  default-language: Haskell2010
+  ghc-options:      -Wall
+  build-depends:    base >=4.16 && <5
+                  , aeson >=2.0 && <3
+                  , bytestring >=0.11 && <0.13
+                  , text >=1.2 && <2.2
+
+library
+  import:           defaults
+  hs-source-dirs:    src
+  exposed-modules:   EasyLang.Client
+                  , EasyLang.Config
+                  , EasyLang.LanguagePairs
+                  , EasyLang.Options
+                  , EasyLang.Progress
+                  , EasyLang.Reasoning
+                  , EasyLang.Response
+  build-depends:     http-client >=0.7 && <0.8
+                  , http-client-tls >=0.3 && <0.4
+                  , http-types >=0.12 && <0.13
+                  , optparse-applicative >=0.17 && <0.20
+                  , containers >=0.6 && <0.8
+                  , directory >=1.3 && <1.4
+                  , filepath >=1.4 && <1.6
+                  , toml-parser >=1.3.2 && <1.4
+
+executable easy-lang
+  import:           defaults
+  hs-source-dirs:    app
+  main-is:          Main.hs
+  ghc-options:      -threaded -rtsopts
+  build-depends:    easy-lang
+                  , optparse-applicative

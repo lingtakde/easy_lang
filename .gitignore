@@ -1,0 +1,40 @@
+# Haskell build output and local Cabal settings
+/dist-newstyle/
+/dist/
+/.stack-work/
+/.bin/
+/cabal.project.local
+/cabal.project.local~
+*.hi
+*.dyn_hi
+*.o
+*.dyn_o
+*.prof
+*.tix
+.hpc/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+/.easy-lang/
+/config.toml
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+/.venv/
+/venv/
+
+# Local tests, fixtures, and reports
+/test/
+/tests/
+/reports/
+/scripts/test-translations.py
+
+# Editor and operating-system artifacts
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
